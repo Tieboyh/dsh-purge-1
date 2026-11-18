@@ -28,14 +28,14 @@
   config:
     includeHarnessIdentity: false
     personaPrefix: ""
-    personaSuffix: Your working directory is {{cwd}}.
+    personaSuffix: ""
 
-- id: dsh-purge
-  inject: [systemPrompt, tools]
-
+# 本插件作为 profile bundle 加载，bundle patch 必须自己把本体 insert 进加载树。
+# 与 dsh-chat-motion 等第三方 bundle 的写法一致；市场安装写的额外 insert 行才需要
+# 避免重复，这里改成本地 link:/file: 安装，不会第二次入队。
 - insert:
     - id: dsh-purge
-      name: 'dsh-purge'
+      name: dsh-purge
       inject: [systemPrompt, tools]
       config:
         enabled: true
